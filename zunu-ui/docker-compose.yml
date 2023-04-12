@@ -13,6 +13,16 @@ services:
         notification_url: ${notification_url}
     networks:
       - vault-ui-network
-
+  academic-ui:
+    image: mahakziroh2/zunu:docker-academic-ui-v1.0
+    restart: always
+    ports:
+            - "3000:4000"
+    environment:
+        user_url: ${user_url}
+        notification_url: ${notification_url}
+        isOnPremise: ${isOnPremise}
+    networks:
+      - vault-ui-network
 networks:
   vault-ui-network:
