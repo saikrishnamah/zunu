@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+
+#vault-svc
+  #user
+  admin-ui:
+    image: mahakziroh2/zunu:docker-admin-ui-v1.0
+    restart: always
+    ports:
+            - "4000:4000"
+    environment:
+        user_url: ${user_url}
+        notification_url: ${notification_url}
+    networks:
+      - vault-ui-network
+
+networks:
+  vault-ui-network:
