@@ -1,0 +1,281 @@
+version: "3.9"
+services:
+
+#vault-svc
+  #user
+  vault-user:
+    image: mahakziroh2/zunu:docker-vault-user-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host}
+      mongodb_host: ${mongodb_host}     
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      secretKeyValue: ${secretKeyValue}
+      FQDN: ${FQDN}
+      wss: ${wss}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network
+  #encryption
+  vault-encrypt:
+    image: mahakziroh2/zunu:docker-vault-encryption-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}      
+      pgdb_host: ${pgdb_host}      
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network      
+  #keys
+  vault-keys:
+    image: mahakziroh2/zunu:docker-vault-keys-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}      
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      secretKeyValue: ${secretKeyValue}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network
+  #apikeys
+  vault-apikeys:
+    image: mahakziroh2/zunu:docker-vault-apikeys-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}      
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      secretKeyValue: ${secretKeyValue}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network
+  #fsn
+  vault-fsn:
+    image: mahakziroh2/zunu:docker-vault-fsn-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}      
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}  
+      secretKeyValue: ${secretKeyValue}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network
+  #mailstore
+  vault-mailstore:
+    image: mahakziroh2/zunu:docker-vault-mailstore-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}      
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network
+  #mailer
+  vault-mailer:
+    image: mahakziroh2/zunu:docker-vault-mailer-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}      
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      mailerHost: ${mailerHost}
+      mailUsername: ${mailUsername}
+      mailerAddress: ${mailerAddress}
+      mailerPassword: ${mailerPassword}
+      secretKeyValue: ${secretKeyValue}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network      
+  #omail
+  vault-omail:
+    image: mahakziroh2/zunu:docker-vault-omail-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network
+  #cloudsync
+  vault-cloudsync:
+    image: mahakziroh2/zunu:docker-vault-cloudsync-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}      
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      secretKeyValue: ${secretKeyValue}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network
+  #ostor
+  vault-ostor:
+    image: mahakziroh2/zunu:docker-vault-ostor-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}      
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      secretKeyValue: ${secretKeyValue}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network
+  #pushnotification
+  vault-pushnotification:
+    image: mahakziroh2/zunu:docker-vault-pushnotification-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}      
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network
+  #notification
+  vault-notification:
+    image: mahakziroh2/zunu:docker-vault-notification-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}      
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      secretKeyValue: ${secretKeyValue}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network
+  #live
+  vault-live:
+    image: mahakziroh2/zunu:docker-vault-live-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}      
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      secretKeyValue: ${secretKeyValue}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network
+  #zunuaudit
+  vault-zunuaudit:
+    image: mahakziroh2/zunu:docker-vault-zunuaudit-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}      
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network
+  #index
+  vault-index:
+    image: mahakziroh2/zunu:docker-vault-index-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}      
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      secretKeyValue: ${secretKeyValue}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network
+  #upload
+  vault-upload:
+    image: mahakziroh2/zunu:docker-vault-upload-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}      
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      secretKeyValue: ${secretKeyValue}
+      bucketname: ${bucketName}
+      AccessKeyId: ${AccessKeyId}
+      SecretAccessKey: ${SecretAccessKey}
+      Region: ${Region}
+      storageTypeValue: ${storageTypeValue}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network
+    volumes:
+       - "./gcs-cred.json:/opt/ziroh/upload/gcs-cred.json:ro"
+  #otp
+  vault-otp:
+    image: mahakziroh2/zunu:docker-vault-otp-${vault_version}
+    restart: always
+    environment:
+      pgdb_host: ${pgdb_host} 
+      mongodb_host: ${mongodb_host}      
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+      whilecondition: ${whilecondition}
+    networks:
+      - vault-network
+# nginx
+  web:
+    image: mahakziroh2/zunu:docker-nginx-v1.0
+    restart: always
+    ports:
+      - 80:80/tcp
+        #  - 440:443/tcp
+        # environment:
+            #  CERTBOT_EMAIL: ${CERTBOT_EMAIL}
+        #  ENVSUBST_VARS: ${ENVSUBST_VARS}
+        # FQDN: ${FQDN}
+        # volumes:
+        # - letsencrypt:/etc/letsencrypt
+    networks:
+      - vault-network
+# pgsql
+  pgsql:
+    image: mahakziroh2/zunu:docker_client_postgres_12
+    restart: always
+    # command: ["postgres", "-c", "config_file=/etc/postgresql.conf"]
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: ${PGDATA}
+      pgdb_user: ${pgdb_user}
+      pgdb_password: ${pgdb_password}
+    volumes:
+    - "PGDATA:/data/postgres"
+    networks:
+      - vault-network
+# mongo
+  mongo:
+    image: "mongo:5.0.9"
+    restart: "always"
+    ports:
+      - "27017:27017"
+    volumes:
+      - "MONGODATA:/data/db"
+    networks:
+      - vault-network 
+volumes:
+  PGDATA:
+  MONGODATA:
+    external: false
+        
+networks:
+  vault-network:
